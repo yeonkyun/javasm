@@ -48,6 +48,6 @@ public class Car {
     }
 
     public void stop() {
-        System.out.println("Car break!");
+        System.out.println("Car brake!");
     }
 }

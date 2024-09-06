@@ -7,63 +7,92 @@ public class Car {
     private String name;
     private String color;
     private double fuelSize;
-    private double currentFuel;
+    private double currFuel;
+    private Engine engine;
+
 
     public Car() {
-        Random random = new Random();
-        this.serial = random.nextInt(10000) + 1;
+        Random rand = new Random();
+        this.serial = rand.nextInt(10000)+1;
     }
-
-
-
-    public Car(String name, String color, double fuelSize, double currentFuel, int serial) {
+    public Car(int serial, String name, String color, double fuelSize, double currFuel) {
         this.serial = serial;
-        this.color = color;
-        this.currentFuel = currentFuel;
-        this.fuelSize = fuelSize;
         this.name = name;
+        this.color = color;
+        this.fuelSize = fuelSize;
+        this.currFuel = currFuel;
     }
-
-    public Car(String name, String color, double fuelSize, double currentFuel) {
+    public Car(String name, String color, double fuelSize, double currFuel) {
         this();
-        this.color = color;
-        this.currentFuel = currentFuel;
-        this.fuelSize = fuelSize;
         this.name = name;
-    }
-
-    public void setCurrentFuel(double currentFuel) {
-        this.currentFuel = currentFuel;
-    }
-
-    public void addFuel(double size) throws Exception{
-        if (this.currentFuel + size > this.fuelSize) {
-            throw new Exception("EC0001");
-        }
-    }
-
-    public void go(int distance) {
-        // 1L -> 100km
-        double fuelNeeded = distance / 100.0;
-        if (fuelNeeded > this.currentFuel) {
-            System.out.println("Not enough fuel");
-            return;
-        }
-        System.out.printf("%s is going %d km\n", this.name, distance);
-    }
-
-    public void stop() {
-        System.out.printf("%s is stopping\n", this.name);
+        this.color = color;
+        this.fuelSize = fuelSize;
+        this.currFuel = currFuel;
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "color='" + color + '\'' +
-                ", serial=" + serial +
+                "serial=" + serial +
                 ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
                 ", fuelSize=" + fuelSize +
-                ", currentFuel=" + currentFuel +
+                ", currFuel=" + currFuel +
+                ", engine=" + engine +
+                '}';
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public void setCurrFuel(double currFuel) {
+        this.currFuel = currFuel;
+    }
+
+    public void addFuel(double size) throws Exception {
+        if(this.currFuel + size > this.fuelSize) {
+            throw new Exception("EC0001");
+        }
+        this.currFuel += size;
+    }
+
+    public void go(int distance) {
+        // 1: 100Km
+        this.currFuel -= distance / 100.0;
+
+        System.out.printf("%s %d 달렸습니다. \n",this.name,distance);
+    }
+    public void brake(){
+        System.out.printf("Brake:::: %s \n", this.toString() );
+    }
+
+}
+
+class Engine{
+    private int serial;
+    private int size;
+    private String name;
+
+    public Engine() {
+    }
+
+    public Engine(int serial, int size, String name) {
+        this.serial = serial;
+        this.size = size;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Engine{" +
+                "serial=" + serial +
+                ", size=" + size +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
