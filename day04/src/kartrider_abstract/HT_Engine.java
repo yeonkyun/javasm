@@ -17,29 +17,29 @@ public class HT_Engine extends Engine {
 
     @Override
     public void activateBooster() {
-        System.out.println("HT Engine Booster Activated!");
+        System.out.println("HT 엔진 부스터 작동!");
         if (infiniteBoostEnabled) {
             infiniteBoostActivation();
         }
     }
 
     public void infiniteBoostActivation() {
-        System.out.println("Infinite Boost Activated!");
+        System.out.println("무한 부스트 활성화!");
     }
 
     public void boostGaugeRecoveryOnCollision() {
         if (boostGaugeRecoveryEnabled) {
-            System.out.println("Boost Gauge Recovered on Collision!");
+            System.out.println("충돌 시 부스트 게이지 복구!");
         }
     }
 
     public void instantTransformation() {
-        System.out.println("Instant Transformation Activated!");
+        System.out.println("즉시 변환 활성화!");
     }
 
     @Override
     public String toString() {
-        return super.toString() + String.format(", Infinite Boost=%b, Boost Gauge Recovery=%b",
+        return super.toString() + String.format(", 무한 부스트=%b, 부스트 게이지 복구=%b",
                 infiniteBoostEnabled, boostGaugeRecoveryEnabled);
     }
 }
