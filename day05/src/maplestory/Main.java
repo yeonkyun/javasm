@@ -1,48 +1,36 @@
 package maplestory;
 
 import maplestory.Archer.*;
-import maplestory.Thief.DualBlade;
-import maplestory.Thief.NightLord;
-import maplestory.Thief.Shadower;
-import maplestory.Thief.Thief;
+import maplestory.Pirate.*;
+import maplestory.Thief.*;
 import maplestory.Warrior.*;
-import maplestory.Wizard.ArchMage_SC;
+import maplestory.Wizard.*;
 
 public class Main {
     public static void main(String[] args) {
-//        Adventurer[] warriors = new Warrior[3];
-//
-//        warriors[0] = new Hero();
-//        warriors[1] = new Paladin();
-//        warriors[2] = new DarkKnight();
-//
-//        for (int i = 0; i < warriors.length; i++) {
-//            System.out.println(warriors[i].getClass().getSimpleName());
-//            warriors[i].attack();
-//            warriors[i].commonSkill();
-//            System.out.println();
-//        }
-// 
-//        Adventurer[] archers = new Archer[3];
-//
-//        archers[0] = new Pathfinder();
-//        archers[1] = new Bowmaster();
-//        archers[2] = new Marksman();
-//
-//        for (int i = 0; i < archers.length; i++) {
-//            System.out.println(archers[i].getClass().getSimpleName());
-//            archers[i].attack();
-//            archers[i].commonSkill();
-//            System.out.println();
-//        }
-//
-//        Adventurer[] thiefs = new Thief[3];
-//
-//        thiefs[0] = new DualBlade();
-//        thiefs[1] = new NightLord();
-//        thiefs[2] = new Shadower();
-//
-        Adventurer Wizards = new ArchMage_SC();
-        Wizards.commonSkill();
+        Adventurer[] player1 = new Adventurer[5];
+
+        player1[0] = new Hero();
+        player1[1] = new Bowmaster();
+        player1[2] = new ArchMage_SC();
+        player1[3] = new DualBlade();
+        player1[4] = new Viper();
+
+        for (Adventurer adventurer : player1) {
+            if (adventurer instanceof Archer) {
+                ((Archer) adventurer).SharpeEyes();
+            } else if (adventurer instanceof Pirate) {
+                ((Pirate) adventurer).LuckyDice();
+            } else if (adventurer instanceof Thief) {
+                ((Thief) adventurer).luckySeven();
+            } else if (adventurer instanceof Warrior) {
+                ((Warrior) adventurer).HyperBody();
+            } else if (adventurer instanceof Wizard) {
+                ((Wizard) adventurer).MagicGuard();
+            }
+
+            adventurer.attack();
+        }
+
     }
 }
