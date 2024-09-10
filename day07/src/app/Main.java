@@ -30,11 +30,11 @@ public class Main {
         List<Customer> customers = null;
         try {
             customers = db.select();
+            for (Customer cust : customers) {
+                System.out.println(cust);
+            }
         } catch (Exception e) {
             System.out.println("Select Error");
-        }
-        for (Customer cust : customers) {
-            System.out.println(cust);
         }
 
         db = new ItemDb();
