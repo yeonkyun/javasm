@@ -1,191 +1,196 @@
 package edu.sunmoon.ws0911.dao;
 
 import edu.sunmoon.ws0911.util.DBConnection;
+import edu.sunmoon.ws0911.entity.product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDAO {
-    public void selectAll() {
-        // 데이터베이스에서 product 테이블의 모든 레코드를 조회하는 SQL을 실행하는 코드
+    public List<product> selectAll() {
+        List<product> products = new ArrayList<>();
         String query = "SELECT * FROM product";
 
-        // try-with-resources 구문을 사용하여 자원을 자동으로 해제
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int price = resultSet.getInt("price");
-                String imageName = resultSet.getString("image_name");
-                String createBy = resultSet.getString("create_by");
-                String createAt = resultSet.getString("create_at");
-                System.out.println("{id=" + id + ", name=" + name + ", price=" + price + ", imageName=" + imageName + ", createBy=" + createBy + ", createAt=" + createAt + "}");
+                products.add(extractProductFromResultSet(resultSet));
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 조회 중 오류가 발생했습니다.", ex);
         }
+        return products;
     }
 
-    public void selectById(int id) {
-        // 데이터베이스에서 product 테이블에서 id가 일치하는 레코드를 조회하는 SQL을 실행하는 코드
+    public product selectById(int id) {
         String query = "SELECT * FROM product WHERE id = ?";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                int price = resultSet.getInt("price");
-                String imageName = resultSet.getString("image_name");
-                String createBy = resultSet.getString("create_by");
-                String createAt = resultSet.getString("create_at");
-                System.out.println("{id=" + id + ", name=" + name + ", price=" + price + ", imageName=" + imageName + ", createBy=" + createBy + ", createAt=" + createAt + "}");
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return extractProductFromResultSet(resultSet);
+                }
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 조회 중 오류가 발생했습니다.", ex);
         }
+        return null;
     }
 
-    public void selectByName(String name) {
-        // 데이터베이스에서 product 테이블에서 name이 일치하는 레코드를 조회하는 SQL을 실행하는 코드
+    public List<product> selectByName(String name) {
+        List<product> products = new ArrayList<>();
         String query = "SELECT * FROM product WHERE name = ?";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, name);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                int price = resultSet.getInt("price");
-                String imageName = resultSet.getString("image_name");
-                String createBy = resultSet.getString("create_by");
-                String createAt = resultSet.getString("create_at");
-                System.out.println("{id=" + id + ", name=" + name + ", price=" + price + ", imageName=" + imageName + ", createBy=" + createBy + ", createAt=" + createAt + "}");
+            preparedStatement.setString(1, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    products.add(extractProductFromResultSet(resultSet));
+                }
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 조회 중 오류가 발생했습니다.", ex);
         }
+        return products;
     }
 
-    public void selectByPrice(int price) {
-        // 데이터베이스에서 product 테이블에서 price가 일치하는 레코드를 조회하는 SQL을 실행하는 코드
+    public List<product> selectByPrice(int price) {
+        List<product> products = new ArrayList<>();
         String query = "SELECT * FROM product WHERE price = ?";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, price);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String imageName = resultSet.getString("image_name");
-                String createBy = resultSet.getString("create_by");
-                String createAt = resultSet.getString("create_at");
-                System.out.println("{id=" + id + ", name=" + name + ", price=" + price + ", imageName=" + imageName + ", createBy=" + createBy + ", createAt=" + createAt + "}");
+            preparedStatement.setInt(1, price);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    products.add(extractProductFromResultSet(resultSet));
+                }
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 조회 중 오류가 발생했습니다.", ex);
         }
+        return products;
     }
 
-    public void selectByCreateBy(String createBy) {
-        // 데이터베이스에서 product 테이블에서 createBy가 일치하는 레코드를 조회하는 SQL을 실행하는 코드
+    public List<product> selectByCreateBy(String createBy) {
+        List<product> products = new ArrayList<>();
         String query = "SELECT * FROM product WHERE create_by = ?";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, createBy);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int price = resultSet.getInt("price");
-                String imageName = resultSet.getString("image_name");
-                String createAt = resultSet.getString("create_at");
-                System.out.println("{id=" + id + ", name=" + name + ", price=" + price + ", imageName=" + imageName + ", createBy=" + createBy + ", createAt=" + createAt + "}");
+            preparedStatement.setString(1, createBy);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    products.add(extractProductFromResultSet(resultSet));
+                }
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 조회 중 오류가 발생했습니다.", ex);
         }
+        return products;
     }
 
-    public void selectByCreateAt(String createAt) {
-        // 데이터베이스에서 product 테이블에서 createAt이 일치하는 레코드를 조회하는 SQL을 실행하는 코드
+    public List<product> selectByCreateAt(String createAt) {
+        List<product> products = new ArrayList<>();
         String query = "SELECT * FROM product WHERE create_at = ?";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, createAt);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int price = resultSet.getInt("price");
-                String imageName = resultSet.getString("image_name");
-                String createBy = resultSet.getString("create_by");
-                System.out.println("{id=" + id + ", name=" + name + ", price=" + price + ", imageName=" + imageName + ", createBy=" + createBy + ", createAt=" + createAt + "}");
+            preparedStatement.setString(1, createAt);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    products.add(extractProductFromResultSet(resultSet));
+                }
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 조회 중 오류가 발생했습니다.", ex);
         }
+        return products;
     }
 
-    public void insert() {
-        // 데이터베이스에 product 테이블에 레코드를 추가하는 SQL을 실행하는 코드
+    public int insert(product product) {
         String query = "INSERT INTO product (name, price, image_name, create_by) VALUES (?, ?, ?, ?)";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, "새로운 상품");
-            preparedStatement.setInt(2, 10000);
-            preparedStatement.setString(3, "새로운 상품 이미지");
-            preparedStatement.setString(4, "admin");
-            preparedStatement.executeUpdate();
-            System.out.println("데이터베이스에 상품을 추가했습니다.");
-        } catch (Exception ex) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setInt(2, product.getPrice());
+            preparedStatement.setString(3, product.getImageName());
+            preparedStatement.setString(4, product.getCreateBy());
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("상품 생성 실패, 영향받은 행이 없습니다.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("상품 생성 실패, ID를 가져올 수 없습니다.");
+                }
+            }
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 추가 중 오류가 발생했습니다.", ex);
         }
     }
 
-    public void update() {
-        // 데이터베이스에 product 테이블에 레코드를 수정하는 SQL을 실행하는 코드
+    public boolean update(product product) {
         String query = "UPDATE product SET name = ?, price = ?, image_name = ?, create_by = ? WHERE id = ?";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, "수정된 상품");
-            preparedStatement.setInt(2, 20000);
-            preparedStatement.setString(3, "수정된 상품 이미지");
-            preparedStatement.setString(4, "admin");
-            preparedStatement.setInt(5, 1);
-            preparedStatement.executeUpdate();
-            System.out.println("데이터베이스에 상품을 수정했습니다.");
-        } catch (Exception ex) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setInt(2, product.getPrice());
+            preparedStatement.setString(3, product.getImageName());
+            preparedStatement.setString(4, product.getCreateBy());
+            preparedStatement.setInt(5, product.getId());
+
+            int affectedRows = preparedStatement.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 수정 중 오류가 발생했습니다.", ex);
         }
     }
 
-    public void delete() {
-        // 데이터베이스에 product 테이블에 레코드를 삭제하는 SQL을 실행하는 코드
+    public boolean delete(int id) {
         String query = "DELETE FROM product WHERE id = ?";
 
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, 1);
-            preparedStatement.executeUpdate();
-            System.out.println("데이터베이스에 상품을 삭제했습니다.");
-        } catch (Exception ex) {
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, id);
+
+            int affectedRows = preparedStatement.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException ex) {
             throw new RuntimeException("데이터베이스 삭제 중 오류가 발생했습니다.", ex);
         }
+    }
+
+    private product extractProductFromResultSet(ResultSet resultSet) throws SQLException {
+        return new product(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getInt("price"),
+                resultSet.getString("image_name"),
+                resultSet.getTimestamp("create_at").toLocalDateTime(),
+                resultSet.getTimestamp("update_at") != null ? resultSet.getTimestamp("update_at").toLocalDateTime() : null,
+                resultSet.getString("create_by")
+        );
     }
 }
