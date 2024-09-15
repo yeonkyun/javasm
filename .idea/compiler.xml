@@ -5,7 +5,6 @@
       <module name="day08_jdbc" target="17" />
       <module name="day08_jdbc.main" target="17" />
       <module name="day08_jdbc.test" target="17" />
-      <module name="day09-jdbc" target="17" />
       <module name="day09-jdbc.main" target="17" />
       <module name="day09-jdbc.test" target="17" />
       <module name="day10" target="17" />
