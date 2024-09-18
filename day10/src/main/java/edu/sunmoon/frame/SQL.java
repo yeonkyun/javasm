@@ -10,7 +10,7 @@ public class SQL {
     public static final String DELETE_CUSTOMER = "DELETE FROM CUSTOMER WHERE ID = ?";
 
     // PRODUCT
-    public static final String INSERT_PRODUCT = "INSERT INTO PRODUCT (NANE, PRICE, CREATEDBY) VALUES (?, ?, ?)";
+    public static final String INSERT_PRODUCT = "INSERT INTO PRODUCT (NAME, PRICE, CREATEDBY) VALUES (?, ?, ?)";
     public static final String SELECT_PRODUCT = "SELECT * FROM PRODUCT";
     public static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM PRODUCT WHERE ID = ?";
     public static final String SELECT_PRODUCT_BY_NAME = "SELECT * FROM PRODUCT WHERE NAME = ?";
@@ -23,5 +23,5 @@ public class SQL {
     public static final String SELECT_CART_BY_CUSTOMER_ID = "SELECT * FROM CART WHERE CUSTOMER_ID = ?";
     public static final String SELECT_CART_BY_PRODUCT_ID = "SELECT * FROM CART WHERE PRODUCT_ID = ?";
     public static final String UPDATE_CART = "UPDATE CART SET QUANTITY = ? WHERE CUSTOMER_ID = ? AND PRODUCT_ID = ?";
-    public static final String DELETE_CART = "DELETE FROM CART WHERE CUSTOMER_ID = ? AND PRODUCT_ID = ?";
+    public static final String DELETE_CART = "DELETE FROM CART WHERE CUSTOMER_ID = ? AND ID = ?";
 }

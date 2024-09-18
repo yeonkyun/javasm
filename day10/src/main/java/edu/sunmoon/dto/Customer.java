@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 public class Customer {
-    String id;
-    String password;
-    String name;
-    int age;
-    String gender;
-    String email;
-    String phone;
-    LocalDateTime createdAt;
+    private String id;
+    private String password;
+    private String name;
+    private int age;
+    private String gender;
+    private String email;
+    private String phone;
+    private LocalDateTime createdAt;
 }

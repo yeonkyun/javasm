@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 public class Product {
-    int id;
-    String name;
-    int price;
-    LocalDateTime createdAt;
-    LocalDateTime lastUpdatedAt;
-    String createdBy;
+    private int id;
+    private String name;
+    private int price;
+    private LocalDateTime createdAt;
+    private LocalDateTime lastUpdatedAt;
+    private String createdBy;
 }

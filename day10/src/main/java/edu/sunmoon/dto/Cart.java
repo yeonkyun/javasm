@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 public class Cart {
-    int id;
-    String customerId;
-    int productId;
-    int quantity;
-    LocalDateTime createdAt;
+    private int id;
+    private String customerId;
+    private int productId;
+    private int quantity;
+    private LocalDateTime createdAt;
 }

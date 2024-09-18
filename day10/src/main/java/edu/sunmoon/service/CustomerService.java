@@ -1,8 +1,7 @@
 package edu.sunmoon.service;
 
 import edu.sunmoon.dao.CustomerDAO;
-import edu.sunmoon.dao.ProductDAO;
-import edu.sunmoon.dto.Product;
+import edu.sunmoon.dto.Customer;
 import edu.sunmoon.frame.ConnectionPool;
 import edu.sunmoon.frame.Mservice;
 
@@ -10,12 +9,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProductService implements Mservice<Integer, Product> {
-    ProductDAO dao;
+public class CustomerService implements Mservice<String, Customer> {
+    CustomerDAO dao;
     ConnectionPool pool;
 
-    public ProductService() {
-        dao = new ProductDAO();
+    public CustomerService() {
+        dao = new CustomerDAO();
         try {
             pool = ConnectionPool.create();
         } catch (SQLException e) {
@@ -24,12 +23,12 @@ public class ProductService implements Mservice<Integer, Product> {
     }
 
     @Override
-    public Product add(Product product) throws Exception {
+    public Customer add(Customer customer) throws Exception {
         Connection connection = pool.getConnection();
         try {
             connection.setAutoCommit(false);
-            dao.insert(product, connection);
-            System.out.println("ProductService.add() - " + product);
+            dao.insert(customer, connection);
+            System.out.println("CustomerService.add() - " + customer);
             connection.commit();
         } catch (Exception e) {
             connection.rollback();
@@ -37,35 +36,30 @@ public class ProductService implements Mservice<Integer, Product> {
         } finally {
             pool.releaseConnection(connection);
         }
-        return product;
+        return customer;
     }
 
     @Override
-    public Product modify(Product product) throws Exception {
+    public Customer modify(Customer customer) throws Exception {
         Connection connection = pool.getConnection();
         try {
-            connection.setAutoCommit(false);
-            dao.update(product, connection);
-            System.out.println("ProductService.modify() - " + product);
-            connection.commit();
+            dao.update(customer, connection);
         } catch (Exception e) {
             connection.rollback();
             throw e;
         } finally {
             pool.releaseConnection(connection);
         }
-        return product;
+        return customer;
     }
 
     @Override
-    public Boolean remove(Integer id) throws Exception {
+    public Boolean remove(String s) throws Exception {
         Connection connection = pool.getConnection();
         Boolean result = false;
         try {
-            connection.setAutoCommit(false);
-            result = dao.delete(id, connection);
-            System.out.println("ProductService.remove() - " + id);
-            connection.commit();
+            result = dao.delete(s, connection);
+            System.out.println("CustomerService.remove() - " + s);
         } catch (Exception e) {
             connection.rollback();
             throw e;
@@ -76,32 +70,30 @@ public class ProductService implements Mservice<Integer, Product> {
     }
 
     @Override
-    public Product get(Integer id) throws Exception {
+    public Customer get(String s) throws Exception {
         Connection connection = pool.getConnection();
-        Product product = null;
+        Customer result = null;
         try {
-            product = dao.select(id, connection);
-            System.out.println("ProductService.get() - " + id);
+            result = dao.select(s, connection);
         } catch (Exception e) {
             throw e;
         } finally {
             pool.releaseConnection(connection);
         }
-        return product;
+        return result;
     }
 
     @Override
-    public List<Product> get() throws Exception {
+    public List<Customer> get() throws Exception {
         Connection connection = pool.getConnection();
-        List<Product> list = null;
+        List<Customer> result = null;
         try {
-            list = dao.select(connection);
-            System.out.println("ProductService.get()");
+            result = dao.select(connection);
         } catch (Exception e) {
             throw e;
         } finally {
             pool.releaseConnection(connection);
         }
-        return list;
+        return result;
     }
 }
