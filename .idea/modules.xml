@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/codingTest/codingTest.iml" filepath="$PROJECT_DIR$/codingTest/codingTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/day01/day01.iml" filepath="$PROJECT_DIR$/day01/day01.iml" />
       <module fileurl="file://$PROJECT_DIR$/day02/day02.iml" filepath="$PROJECT_DIR$/day02/day02.iml" />
       <module fileurl="file://$PROJECT_DIR$/day03/day03.iml" filepath="$PROJECT_DIR$/day03/day03.iml" />
@@ -19,6 +20,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/day10.main.iml" filepath="$PROJECT_DIR$/.idea/modules/day10.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/day10.test.iml" filepath="$PROJECT_DIR$/.idea/modules/day10.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/javasm.iml" filepath="$PROJECT_DIR$/javasm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shoppingmall.iml" filepath="$PROJECT_DIR$/shoppingmall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shoppingmall.main.iml" filepath="$PROJECT_DIR$/.idea/modules/shoppingmall.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shoppingmall.test.iml" filepath="$PROJECT_DIR$/.idea/modules/shoppingmall.test.iml" />
     </modules>
   </component>
 </project>
