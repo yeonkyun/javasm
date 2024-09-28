@@ -8,8 +8,11 @@ public class CustomerInsert {
         CustomerService service = new CustomerService();
         Customer customer = Customer.builder()
                 .id("customer999")
-
-
+                .password("password999")
+                .name("정연균")
+                .phone("010-5213-0917")
+                .email("jungyk411@sunmoon.ac.kr")
+                .level("VIP")
                 .build();
         try {
             Customer result = service.add(customer);
