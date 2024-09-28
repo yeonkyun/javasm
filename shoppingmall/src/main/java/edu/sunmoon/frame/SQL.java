@@ -1,9 +1,16 @@
 package edu.sunmoon.frame;
 
 public class SQL {
+    // ADDRESS
+    public static final String INSERT_ADDRESS = "INSERT INTO address (customer_id, type, name, phone, address1, address2, zip_code, is_default) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public static final String SELECT_ADDRESS = "SELECT * FROM address";
+    public static final String SELECT_ADDRESS_BY_ID = "SELECT * FROM address WHERE address_id = ?";
+    public static final String SELECT_ADDRESS_BY_CUSTOMER_ID = "SELECT * FROM address WHERE customer_id = ?";
+    public static final String UPDATE_ADDRESS = "UPDATE address SET type = ?, name = ?, phone = ?, address1 = ?, address2 = ?, zip_code = ?, is_default = ? WHERE address_id = ?";
+    public static final String DELETE_ADDRESS = "DELETE FROM address WHERE address_id = ?";
+
     // CUSTOMER
-    public static final String INSERT_CUSTOMER = "INSERT INTO customer (customer_id, name, email, password, phone, level, created_at, updated_at)\n" +
-            "VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
+    public static final String INSERT_CUSTOMER = "INSERT INTO customer (customer_id, name, email, password, phone, level, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
     public static final String SELECT_CUSTOMER = "SELECT * FROM customer";
     public static final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE customer_id = ?";
     public static final String SELECT_CUSTOMER_BY_NAME = "SELECT * FROM customer WHERE name = ?";
