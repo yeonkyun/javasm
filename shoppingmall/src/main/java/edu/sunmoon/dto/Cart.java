@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Cart {
     private int id;
-    private int customerId;
+    private String customerId;
     private int productId;
     private int quantity;
     private int totalPrice;

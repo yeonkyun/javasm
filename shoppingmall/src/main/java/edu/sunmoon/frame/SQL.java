@@ -10,7 +10,7 @@ public class SQL {
     public static final String DELETE_ADDRESS = "DELETE FROM address WHERE address_id = ?";
 
     // CART
-    public static final String INSERT_CART = "INSERT INTO cart (customer_id, product_id, quantity, total_price, created_at) SELECT ?, ?, ?, (product.price * ?), NOW() FROM product WHERE product.id = ?";
+    public static final String INSERT_CART = "INSERT INTO cart (customer_id, product_id, quantity, total_price, created_at) SELECT ?, ?, ?, (product.price * ?), NOW() FROM product WHERE product.product_id = ?";
     public static final String SELECT_CART = "SELECT * FROM CART";
     public static final String SELECT_CART_BY_CUSTOMER_ID = "SELECT * FROM CART WHERE CUSTOMER_ID = ?";
     public static final String SELECT_CART_BY_PRODUCT_ID = "SELECT * FROM CART WHERE PRODUCT_ID = ?";
