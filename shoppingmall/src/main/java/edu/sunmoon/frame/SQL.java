@@ -12,6 +12,7 @@ public class SQL {
     // cart
     public static final String INSERT_CART = "INSERT INTO cart (customer_id, product_id, quantity, total_price, created_at) SELECT ?, ?, ?, (product.price * ?), NOW() FROM product WHERE product.product_id = ?";
     public static final String SELECT_CART = "SELECT * FROM cart";
+    public static final String SELECT_CART_BY_ID = "SELECT * FROM cart WHERE cart_id = ?";
     public static final String SELECT_CART_BY_CUSTOMER_ID = "SELECT * FROM cart WHERE customer_id = ?";
     public static final String SELECT_CART_BY_PRODUCT_ID = "SELECT * FROM cart WHERE product_id = ?";
     public static final String UPDATE_CART = "UPDATE cart JOIN product ON cart.product_id = product.product_id SET cart.quantity = ?, cart.total_price = (product.price * ?) WHERE cart.cart_id = ?";

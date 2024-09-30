@@ -46,12 +46,12 @@ public class CartDao implements DAO<Integer, Cart> {
     @Override
     public Cart select(Integer integer, Connection connection) throws Exception {
         Cart cart = null;
-        try (PreparedStatement ps = connection.prepareStatement(SQL.SELECT_CART)) {
+        try (PreparedStatement ps = connection.prepareStatement(SQL.SELECT_CART_BY_ID)) {
             ps.setInt(1, integer);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 cart = new Cart();
-                cart.setId(rs.getInt("id"));
+                cart.setId(rs.getInt("cart_id"));
                 cart.setCustomerId(rs.getString("customer_id"));
                 cart.setProductId(rs.getInt("product_id"));
                 cart.setQuantity(rs.getInt("quantity"));
