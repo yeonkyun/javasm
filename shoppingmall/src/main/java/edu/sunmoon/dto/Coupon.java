@@ -21,6 +21,6 @@ public class Coupon {
     private int maxDiscountPrice;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private boolean isEnabled;
+    private boolean isActive;
     private LocalDateTime createdAt;
 }

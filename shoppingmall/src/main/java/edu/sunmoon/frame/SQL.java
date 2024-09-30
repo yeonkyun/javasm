@@ -26,6 +26,14 @@ public class SQL {
     public static final String UPDATE_CATEGORY = "UPDATE category SET parents_id = ?, name = ? WHERE category_id = ?";
     public static final String DELETE_CATEGORY = "DELETE FROM category WHERE category_id = ?";
 
+    // coupon
+    public static final String INSERT_COUPON = "INSERT INTO coupon (name, code, type, discount, min_order_price, max_discount_price, start_date, end_date, is_active, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+    public static final String SELECT_COUPON = "SELECT * FROM coupon";
+    public static final String SELECT_COUPON_BY_CODE = "SELECT * FROM coupon WHERE code = ?";
+    public static final String SELECT_COUPON_BY_NAME = "SELECT * FROM coupon WHERE name = ?";
+    public static final String UPDATE_COUPON = "UPDATE coupon SET name = ?, code = ?, type = ?, discount = ?, min_order_price = ?, max_discount_price = ?, start_date = ?, end_date = ? WHERE code = ?";
+    public static final String DELETE_COUPON = "UPDATE coupon SET is_active = false WHERE code = ?";
+
 
     // customer
     public static final String INSERT_CUSTOMER = "INSERT INTO customer (customer_id, name, email, password, phone, level, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
