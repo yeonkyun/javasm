@@ -11,11 +11,11 @@ public class SQL {
 
     // CART
     public static final String INSERT_CART = "INSERT INTO cart (customer_id, product_id, quantity, total_price, created_at) SELECT ?, ?, ?, (product.price * ?), NOW() FROM product WHERE product.product_id = ?";
-    public static final String SELECT_CART = "SELECT * FROM CART";
-    public static final String SELECT_CART_BY_CUSTOMER_ID = "SELECT * FROM CART WHERE CUSTOMER_ID = ?";
-    public static final String SELECT_CART_BY_PRODUCT_ID = "SELECT * FROM CART WHERE PRODUCT_ID = ?";
-    public static final String UPDATE_CART = "UPDATE CART SET QUANTITY = ? WHERE CUSTOMER_ID = ? AND PRODUCT_ID = ?";
-    public static final String DELETE_CART = "DELETE FROM CART WHERE CUSTOMER_ID = ? AND ID = ?";
+    public static final String SELECT_CART = "SELECT *, product.name FROM cart JOIN product ON cart.product_id = product.product_id";
+    public static final String SELECT_CART_BY_CUSTOMER_ID = "SELECT *, product.name FROM cart JOIN product ON cart.product_id = product.product_id WHERE customer_id = ?";
+    public static final String SELECT_CART_BY_PRODUCT_ID = "SELECT *, product.name FROM cart JOIN product ON cart.product_id = product.product_id WHERE cart.product_id = ?";
+    public static final String UPDATE_CART = "UPDATE cart JOIN product ON cart.product_id = product.product_id SET cart.quantity = ?, cart.total_price = (product.price * ?) WHERE cart.cart_id = ?";
+    public static final String DELETE_CART = "DELETE FROM cart WHERE cart_id = ?";
 
     // CUSTOMER
     public static final String INSERT_CUSTOMER = "INSERT INTO customer (customer_id, name, email, password, phone, level, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";

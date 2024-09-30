@@ -34,19 +34,21 @@ public class CartService implements Mservice<Integer, Cart> {
         return cart;
     }
 
-    @Override
-    public Cart modify(Cart cart) throws Exception {
-        Connection connection = pool.getConnection();
-        try {
-            dao.update(cart, connection);
-        } catch (Exception e) {
-            connection.rollback();
-            throw e;
-        } finally {
-            pool.releaseConnection(connection);
-        }
-        return cart;
+@Override
+public Cart modify(Cart cart) throws Exception {
+    Connection connection = pool.getConnection();
+    try {
+        connection.setAutoCommit(false); // Disable autocommit
+        dao.update(cart, connection);
+        connection.commit(); // Commit the transaction
+    } catch (Exception e) {
+        connection.rollback(); // Rollback the transaction
+        throw e;
+    } finally {
+        pool.releaseConnection(connection);
     }
+    return cart;
+}
 
     @Override
     public Boolean remove(Integer integer) throws Exception {
@@ -86,6 +88,32 @@ public class CartService implements Mservice<Integer, Cart> {
         List<Cart> carts = null;
         try {
             carts = dao.select(connection);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            pool.releaseConnection(connection);
+        }
+        return carts;
+    }
+
+    public List<Cart> getByCustomerId(String customerId) throws Exception {
+        Connection connection = pool.getConnection();
+        List<Cart> carts = null;
+        try {
+            carts = dao.selectByCustomerId(customerId, connection);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            pool.releaseConnection(connection);
+        }
+        return carts;
+    }
+
+    public List<Cart> getByProductId(Integer productId) throws Exception {
+        Connection connection = pool.getConnection();
+        List<Cart> carts = null;
+        try {
+            carts = dao.selectByProductId(productId, connection);
         } catch (Exception e) {
             throw e;
         } finally {
