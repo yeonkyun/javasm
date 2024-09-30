@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CouponBox {
     private int id;
-    private int customerId;
+    private String customerId;
     private int couponId;
     private boolean isUsed;
 }

@@ -11,9 +11,9 @@ public class SQL {
 
     // cart
     public static final String INSERT_CART = "INSERT INTO cart (customer_id, product_id, quantity, total_price, created_at) SELECT ?, ?, ?, (product.price * ?), NOW() FROM product WHERE product.product_id = ?";
-    public static final String SELECT_CART = "SELECT *, product.name FROM cart JOIN product ON cart.product_id = product.product_id";
-    public static final String SELECT_CART_BY_CUSTOMER_ID = "SELECT *, product.name FROM cart JOIN product ON cart.product_id = product.product_id WHERE customer_id = ?";
-    public static final String SELECT_CART_BY_PRODUCT_ID = "SELECT *, product.name FROM cart JOIN product ON cart.product_id = product.product_id WHERE cart.product_id = ?";
+    public static final String SELECT_CART = "SELECT * FROM cart";
+    public static final String SELECT_CART_BY_CUSTOMER_ID = "SELECT * FROM cart WHERE customer_id = ?";
+    public static final String SELECT_CART_BY_PRODUCT_ID = "SELECT * FROM cart WHERE product_id = ?";
     public static final String UPDATE_CART = "UPDATE cart JOIN product ON cart.product_id = product.product_id SET cart.quantity = ?, cart.total_price = (product.price * ?) WHERE cart.cart_id = ?";
     public static final String DELETE_CART = "DELETE FROM cart WHERE cart_id = ?";
 
@@ -34,6 +34,14 @@ public class SQL {
     public static final String UPDATE_COUPON = "UPDATE coupon SET name = ?, code = ?, type = ?, discount = ?, min_order_price = ?, max_discount_price = ?, start_date = ?, end_date = ? WHERE code = ?";
     public static final String DELETE_COUPON = "UPDATE coupon SET is_active = false WHERE code = ?";
 
+    // coupon_box
+    public static final String INSERT_COUPON_BOX = "INSERT INTO coupon_box (customer_id, coupon_id, is_used) VALUES (?, ?, ?)";
+    public static final String SELECT_COUPON_BOX = "SELECT * FROM coupon_box";
+    public static final String SELECT_COUPON_BOX_BY_ID = "SELECT * FROM coupon_box WHERE coupon_box_id = ?";
+    public static final String SELECT_COUPON_BOX_BY_CUSTOMER_ID = "SELECT * FROM coupon_box WHERE customer_id = ?";
+    public static final String SELECT_COUPON_BOX_BY_COUPON_ID = "SELECT * FROM coupon_box WHERE coupon_id = ?";
+    public static final String UPDATE_COUPON_BOX = "UPDATE coupon_box SET is_used = ? WHERE coupon_box_id = ?";
+    public static final String DELETE_COUPON_BOX = "DELETE FROM coupon_box WHERE coupon_box_id = ?";
 
     // customer
     public static final String INSERT_CUSTOMER = "INSERT INTO customer (customer_id, name, email, password, phone, level, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
