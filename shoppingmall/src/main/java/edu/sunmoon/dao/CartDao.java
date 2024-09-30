@@ -72,7 +72,6 @@ public class CartDao implements DAO<Integer, Cart> {
                 cart.setId(rs.getInt("cart_id"));
                 cart.setCustomerId(rs.getString("customer_id"));
                 cart.setProductId(rs.getInt("product_id"));
-                cart.setProductName(rs.getString("name"));
                 cart.setQuantity(rs.getInt("quantity"));
                 cart.setTotalPrice(rs.getInt("total_price"));
                 cart.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
@@ -92,7 +91,6 @@ public class CartDao implements DAO<Integer, Cart> {
                 cart.setId(rs.getInt("cart_id"));
                 cart.setCustomerId(rs.getString("customer_id"));
                 cart.setProductId(rs.getInt("product_id"));
-                cart.setProductName(rs.getString("name"));
                 cart.setQuantity(rs.getInt("quantity"));
                 cart.setTotalPrice(rs.getInt("total_price"));
                 cart.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
@@ -112,7 +110,6 @@ public class CartDao implements DAO<Integer, Cart> {
                 cart.setId(rs.getInt("cart_id"));
                 cart.setCustomerId(rs.getString("customer_id"));
                 cart.setProductId(rs.getInt("product_id"));
-                cart.setProductName(rs.getString("name"));
                 cart.setQuantity(rs.getInt("quantity"));
                 cart.setTotalPrice(rs.getInt("total_price"));
                 cart.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());

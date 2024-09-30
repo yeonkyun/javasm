@@ -12,7 +12,6 @@ public class CartSelect {
             List<Cart> list = service.get();
             for (Cart cart : list) {
                 System.out.println(cart);
-//                System.out.println(cart.getProductName() + ", " + cart.getQuantity() + ", " + cart.getTotalPrice() + ", " + cart.getCreatedAt());
             }
         } catch (Exception e) {
             e.printStackTrace();

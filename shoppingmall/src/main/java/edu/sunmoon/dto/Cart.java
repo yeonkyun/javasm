@@ -15,7 +15,6 @@ public class Cart {
     private int id;
     private String customerId;
     private int productId;
-    private String productName;
     private int quantity;
     private int totalPrice;
     private LocalDateTime createdAt;
