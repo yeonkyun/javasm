@@ -62,6 +62,7 @@ public class CustomerDao implements DAO<String, Customer> {
                 customer.setLevel(rs.getString("level"));
                 customer.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
                 customer.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+                customer.setStatus(rs.getBoolean("status"));
             }
         }
         return customer;
@@ -82,6 +83,7 @@ public class CustomerDao implements DAO<String, Customer> {
                 customer.setLevel(rs.getString("level"));
                 customer.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
                 customer.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+                customer.setStatus(rs.getBoolean("status"));
                 customers.add(customer);
             }
             return customers;
@@ -103,6 +105,7 @@ public class CustomerDao implements DAO<String, Customer> {
                 customer.setLevel(rs.getString("level"));
                 customer.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
                 customer.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+                customer.setStatus(rs.getBoolean("status"));
                 customers.add(customer);
             }
             return customers;

@@ -33,7 +33,7 @@ public class SQL {
     public static final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE customer_id = ?";
     public static final String SELECT_CUSTOMER_BY_NAME = "SELECT * FROM customer WHERE name = ?";
     public static final String UPDATE_CUSTOMER = "UPDATE customer SET email = ?, password = ?, phone = ?, level = ?, updated_at = NOW() WHERE customer_id = ?";
-    public static final String DELETE_CUSTOMER = "UPDATE customer SET status = 1, updated_at = NOW() WHERE customer_id = ?";
+    public static final String DELETE_CUSTOMER = "UPDATE customer SET status = 0, updated_at = NOW() WHERE customer_id = ?";
 
     // product
     public static final String INSERT_PRODUCT = "INSERT INTO PRODUCT (NAME, PRICE, CREATEDBY) VALUES (?, ?, ?)";

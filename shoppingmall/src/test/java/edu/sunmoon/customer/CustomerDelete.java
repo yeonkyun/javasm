@@ -8,6 +8,7 @@ public class CustomerDelete {
         try {
             boolean result = service.remove("customer999");
             System.out.println("Deleted: " + result);
+            System.out.println(service.get("customer999"));
         } catch (Exception e) {
             e.printStackTrace();
         }
