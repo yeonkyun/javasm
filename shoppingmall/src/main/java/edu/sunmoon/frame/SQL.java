@@ -52,6 +52,14 @@ public class SQL {
     public static final String UPDATE_CUSTOMER = "UPDATE customer SET email = ?, password = ?, phone = ?, level = ?, updated_at = NOW() WHERE customer_id = ?";
     public static final String DELETE_CUSTOMER = "UPDATE customer SET status = 0, updated_at = NOW() WHERE customer_id = ?";
 
+    // orders
+    public static final String INSERT_ORDER = "INSERT INTO orders (customer_id, name, phone, address1, address2, zip_code, total_price, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+    public static final String SELECT_ORDER = "SELECT * FROM orders";
+    public static final String SELECT_ORDER_BY_ID = "SELECT * FROM orders WHERE order_id = ?";
+    public static final String SELECT_ORDER_BY_CUSTOMER_ID = "SELECT * FROM orders WHERE customer_id = ?";
+    public static final String UPDATE_ORDER = "UPDATE orders SET name = ?, phone = ?, address1 = ?, address2 = ?, zip_code = ?, total_price = ?, status = ? WHERE order_id = ?";
+    public static final String DELETE_ORDER = "DELETE FROM orders WHERE order_id = ?";
+
     // product
     public static final String INSERT_PRODUCT = "INSERT INTO PRODUCT (NAME, PRICE, CREATEDBY) VALUES (?, ?, ?)";
     public static final String SELECT_PRODUCT = "SELECT * FROM PRODUCT";
