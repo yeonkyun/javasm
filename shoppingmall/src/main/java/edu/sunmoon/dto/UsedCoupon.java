@@ -15,6 +15,6 @@ public class UsedCoupon {
     private int id;
     private int orderDetailId;
     private int couponId;
-    private int discountPrice;
+    private int couponDiscountPrice;
     private LocalDateTime createdAt;
 }
