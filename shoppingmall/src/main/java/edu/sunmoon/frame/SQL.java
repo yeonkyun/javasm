@@ -72,6 +72,8 @@ public class SQL {
     public static final String INSERT_PAYMENT = "INSERT INTO payment (order_id, payment_method, price, status, created_at) VALUES (?, ?, ?, ?, NOW())";
     public static final String SELECT_PAYMENT = "SELECT * FROM payment";
     public static final String SELECT_PAYMENT_BY_ID = "SELECT * FROM payment WHERE payment_id = ?";
+    public static final String SELECT_PAYMENT_BY_ORDER_ID = "SELECT * FROM payment WHERE order_id = ?";
+    public static final String SELECT_PAYMENT_BY_PAYMENT_METHOD = "SELECT * FROM payment WHERE payment_method = ?";
     public static final String UPDATE_PAYMENT = "UPDATE payment SET payment_method = ?, price = ?, status = ? WHERE payment_id = ?";
     public static final String DELETE_PAYMENT = "DELETE FROM payment WHERE payment_id = ?";
 
