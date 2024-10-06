@@ -94,11 +94,11 @@ public class SQL {
     public static final String DELETE_REVIEW = "DELETE FROM review WHERE review_id = ?";
 
     // used_coupon
-    public static final String INSERT_USED_COUPON = "INSERT INTO used_coupon (order_detail_id, coupon_id, coupon_discount_price, created_at) VALUES (?, ?, ?, NOW())";
-    public static final String SELECT_USED_COUPON = "SELECT * FROM used_coupon";
-    public static final String SELECT_USED_COUPON_BY_ID = "SELECT * FROM used_coupon WHERE used_coupon_id = ?";
-    public static final String SELECT_USED_COUPON_BY_ORDER_DETAIL_ID = "SELECT * FROM used_coupon WHERE order_detail_id = ?";
-    public static final String SELECT_USED_COUPON_BY_COUPON_ID = "SELECT * FROM used_coupon WHERE coupon_id = ?";
-    public static final String UPDATE_USED_COUPON = "UPDATE used_coupon SET coupon_id = ?, coupon_discount_price = ? WHERE used_coupon_id = ?";
-    public static final String DELETE_USED_COUPON = "DELETE FROM used_coupon WHERE used_coupon_id = ?";
+    public static final String INSERT_USED_COUPON = "INSERT INTO used_coupons (order_detail_id, coupon_id, coupon_discount_price, created_at) VALUES (?, ?, ?, NOW())";
+    public static final String SELECT_USED_COUPON = "SELECT * FROM used_coupons";
+    public static final String SELECT_USED_COUPON_BY_ID = "SELECT * FROM used_coupons WHERE used_coupon_id = ?";
+    public static final String SELECT_USED_COUPON_BY_ORDER_DETAIL_ID = "SELECT * FROM used_coupons WHERE order_detail_id = ?";
+    public static final String SELECT_USED_COUPON_BY_COUPON_ID = "SELECT * FROM used_coupons WHERE coupon_id = ?";
+    public static final String UPDATE_USED_COUPON = "UPDATE used_coupons SET coupon_id = ?, coupon_discount_price = ? WHERE used_coupon_id = ?";
+    public static final String DELETE_USED_COUPON = "DELETE FROM used_coupons WHERE used_coupon_id = ?";
 }
