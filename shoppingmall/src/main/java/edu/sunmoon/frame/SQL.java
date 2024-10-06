@@ -57,8 +57,8 @@ public class SQL {
     public static final String SELECT_ORDER = "SELECT * FROM orders";
     public static final String SELECT_ORDER_BY_ID = "SELECT * FROM orders WHERE order_id = ?";
     public static final String SELECT_ORDER_BY_CUSTOMER_ID = "SELECT * FROM orders WHERE customer_id = ?";
-    public static final String UPDATE_ORDER = "UPDATE orders SET name = ?, phone = ?, address1 = ?, address2 = ?, zip_code = ?, total_price = ?, status = ? WHERE order_id = ?";
-    public static final String DELETE_ORDER = "DELETE FROM orders WHERE order_id = ?";
+    public static final String UPDATE_ORDER = "UPDATE orders SET name = ?, phone = ?, address1 = ?, address2 = ?, zip_code = ?, status = ? WHERE order_id = ?";
+    public static final String DELETE_ORDER = "UPDATE orders SET status = '삭제' WHERE order_id = ?";
 
     // order_detail
     public static final String INSERT_ORDER_DETAIL = "INSERT INTO order_detail (order_id, product_id, product_price, total_discount_price, quantity) VALUES (?, ?, ?, ?, ?)";
