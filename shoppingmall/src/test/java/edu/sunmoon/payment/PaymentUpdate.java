@@ -8,13 +8,10 @@ public class PaymentUpdate {
         PaymentService paymentService = new PaymentService();
         try {
             System.out.println(paymentService.modify(Payment.builder()
-                    .id(62)
-                    .orderId(62)
-                    .paymentMethod("카카오페이")
-                    .price(100000)
-                    .status("결제완료")
+                    .id(66)
+                    .status("결제취소")
                     .build()));
-            System.out.println(paymentService.get(63));
+            System.out.println(paymentService.get(66));
         } catch (Exception e) {
             e.printStackTrace();
         }

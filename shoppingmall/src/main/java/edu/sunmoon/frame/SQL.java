@@ -69,12 +69,13 @@ public class SQL {
     public static final String DELETE_ORDER_DETAIL = "DELETE FROM order_detail WHERE order_detail_id = ?";
 
     // payment
-    public static final String INSERT_PAYMENT = "INSERT INTO payment (order_id, payment_method, price, status, created_at) VALUES (?, ?, ?, ?, NOW())";
+    // INSERT PRICE는 orders 테이블의 total_price를 참조하도록 변경, payment_method와 status는 사용자가 입력하도록 변경
+    public static final String INSERT_PAYMENT = "INSERT INTO payment (order_id, payment_method, price, status, created_at) SELECT ?, ?, orders.total_price, ?, NOW() FROM orders WHERE orders.order_id = ?";
     public static final String SELECT_PAYMENT = "SELECT * FROM payment";
     public static final String SELECT_PAYMENT_BY_ID = "SELECT * FROM payment WHERE payment_id = ?";
     public static final String SELECT_PAYMENT_BY_ORDER_ID = "SELECT * FROM payment WHERE order_id = ?";
     public static final String SELECT_PAYMENT_BY_PAYMENT_METHOD = "SELECT * FROM payment WHERE payment_method = ?";
-    public static final String UPDATE_PAYMENT = "UPDATE payment SET payment_method = ?, price = ?, status = ? WHERE payment_id = ?";
+    public static final String UPDATE_PAYMENT = "UPDATE payment SET status = ? WHERE payment_id = ?";
     public static final String DELETE_PAYMENT = "DELETE FROM payment WHERE payment_id = ?";
 
     // product

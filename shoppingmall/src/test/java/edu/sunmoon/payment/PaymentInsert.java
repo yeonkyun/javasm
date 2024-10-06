@@ -10,7 +10,6 @@ public class PaymentInsert {
             System.out.println(paymentService.add(Payment.builder()
                     .orderId(62)
                     .paymentMethod("신용카드")
-                    .price(100000)
                     .status("결제완료")
                     .build()));
         } catch (Exception e) {
