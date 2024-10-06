@@ -79,10 +79,10 @@ public class SQL {
     public static final String INSERT_PRODUCT = "INSERT INTO product (category_id, name, description, price, stock_quantity, is_selling, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
     public static final String SELECT_PRODUCT = "SELECT * FROM product";
     public static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM product WHERE product_id = ?";
-    public static final String SELECT_PRODUCT_BY_NAME = "SELECT * FROM product WHERE name = ?";
+    public static final String SELECT_PRODUCT_BY_NAME = "SELECT * FROM product WHERE name LIKE CONCAT('%', ?, '%')";
     public static final String SELECT_PRODUCT_BY_CATEGORY_ID = "SELECT * FROM product WHERE category_id = ?";
     public static final String UPDATE_PRODUCT = "UPDATE product SET category_id = ?, name = ?, description = ?, price = ?, stock_quantity = ?, is_selling = ?, updated_at = NOW() WHERE product_id = ?";
-    public static final String DELETE_PRODUCT = "DELETE FROM product WHERE product_id = ?";
+    public static final String DELETE_PRODUCT = "UPDATE product SET is_selling = false, updated_at = NOW() WHERE product_id = ?";
 
     // review
     public static final String INSERT_REVIEW = "INSERT INTO review (product_id, customer_id, rating, content, created_at) VALUES (?, ?, ?, ?, NOW())";
